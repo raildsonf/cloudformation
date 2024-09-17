@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  CreateServiceLinkedRoleForEC2Spot:
+    Type: String
+    Description: Set to 'true' to create the service-linked role AWSServiceRoleForEC2Spot, 'false' to skip it
+    AllowedValues:
+      - true
+      - false
+    Default: false
+
+Conditions:
+  ShouldCreateServiceLinkedRoleForEC2Spot:
+    Fn::Equals: [ !Ref CreateServiceLinkedRoleForEC2Spot, "true" ]
+
+Resources:
+  ServiceLinkedRoleForEC2Spot:
+    Type: AWS::IAM::ServiceLinkedRole
+    Properties:
+      AWSServiceName: spot.amazonaws.com
+      Description: Service-linked role for managing Spot Instances with Karpenter
+    Condition: ShouldCreateServiceLinkedRoleForEC2Spot
