@@ -6,7 +6,7 @@ Parameters:
     AllowedValues:
       - Yes
       - No
-    Default: Yes
+    Default: No
 
 Conditions:
   CreateAWSServiceRoleForEC2Spot:
