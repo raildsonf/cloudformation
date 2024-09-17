@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  CreateServiceLinkedRoleForEC2Spot:
+    Type: String
+    Description: Set to 'true' to activate the creation of the service-linked role AWSServiceRoleForEC2Spot, 'false' to skip it
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+Resources:
+  ServiceLinkedRoleStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cf-templates-1si3bn5llmucm-us-east-2.s3.us-east-2.amazonaws.com/template.yaml
+      Parameters:
+        CreateServiceLinkedRoleForEC2Spot: !Ref CreateServiceLinkedRoleForEC2Spot
