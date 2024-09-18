@@ -9,8 +9,7 @@ Parameters:
     Default: false
 
 Conditions:
-  ShouldCreateServiceLinkedRoleForEC2Spot:
-    Fn::Equals: [ !Ref CreateServiceLinkedRoleForEC2Spot, "true" ]
+  ShouldCreateServiceLinkedRoleForEC2Spot: !Equals [ !Ref CreateServiceLinkedRoleForEC2Spot, "true" ]
 
 Resources:
   ServiceLinkedRoleForEC2Spot:
